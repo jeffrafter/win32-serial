@@ -1,0 +1,4 @@
+rbconfig.rb
+Makefile
+Win32Serial.so
+*.o

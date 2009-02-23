@@ -1,30 +1,63 @@
+== Win32Serial Extension Library (win32-serial)
 
-        Win32Serial Extension Library
+Simple extension library to access Windows serial ports (COM ports) using the
+Windows API. Originally written Apr. 10, 2006 by Travis Whitton 
+&lt; whitton@atlantic.net &gt;
 
-        Apr. 10, 2006 Travis Whitton <whitton@atlantic.net>
+Gem conversion, organization and binary releases by Jeff Rafter. 
 
-The Win32Serial library provides an easy interface to serial ports under
-windows platforms by using the Windows API.
+== Example
 
-[Files]
-win32serial/README : this file.
-win32serial/doc : documentation
-win32serial/sample : sample programs
+It is possible to use the library directly:
 
-[How to install]
-1. unzip win32serial-x.x.zip
-2. ruby extconf.rb
-3. make (or nmake)
-4. make install
+  require 'Win32Serial'
+  port = 'COM1'
+  s = Win32Serial.new
+  s.open(port)
+  s.config(9600, 8, Win32Serial::NOPARITY, Win32Serial::ONESTOPBIT)
+  s.timeouts(0, 200, 0, 0, 0)
+  bytes = s.write("AT+CGMI\r") || "< no bytes >"
+  puts "#{bytes} bytes written to #{port}"
+  puts "response " + (s.read(14) || " < no response >")
+  s.close
 
-[Copying]
-Win32Serial extension library is copyrighted free software by Travis
-Whitton <whitton@atlantic.net>.
-You can redistribute it under the terms specified in the COPYING file
-of the Ruby distribution.
+A compatibility layer has been added which allows you to access the library
+using a SerialPort class as well:
 
-[WARRANTY]
-THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
-WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
-PURPOSE.
+  require 'serialport'
+  sp = SerialPort.new('COM1', 9600, 8, 1, SerialPort::NONE)
+  sp.write("AT")
+  sp.read(14)
+  sp.close
+  
+In addition to write and read, getc is implemented for single byte reads. putc 
+is also implemented for single byte writes.
+
+== Installation
+
+Assuming you have a development environment on the target Windows machine you
+can simply install the Gem normally. Alternatively, binary gem releases are 
+included in the bin folder and can be downloaded. These binary releases are
+compiled using mingw and contain the Win32Serial.so, so no compilation on the
+target Windows machine is necessary. These releases may not be compatible with
+JRuby, Rubinius and other ruby implementations.
+
+== License
+
+Licensed under GPL. See GPL in the release.
+
+== Copying
+
+Original copying:
+
+  Win32Serial extension library is copyrighted free software by Travis Whitton 
+  &lt; whitton@atlantic.net &gt;. You can redistribute it under the terms 
+  specified in the COPYING file of the Ruby distribution.
+
+== Warranty 
+
+Original warranty:
+
+  THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED 
+  WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF 
+  MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
