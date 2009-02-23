@@ -15,3 +15,12 @@ begin
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
+
+
+namespace :windows do
+  desc "Build and package the windows version of the gem"
+  task :build do
+    `cd ext && ruby -I . extconf.rb`
+    `make`
+  end
+end
