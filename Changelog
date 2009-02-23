@@ -1,0 +1,26 @@
+Version 0.1 (1/11/2003):
+    o Initial release (Terrible buggy alpha version)
+Version 0.2 (1/13/2003):
+    o Fixed open function to support writing to port
+    o write function no longer requires length argument
+    o Added print_error function to give verbose error messages
+    o Removed unnecessary variables
+    o Added missing return values to indicate success
+    o Methods now return nil on error instead of -1
+    o API changes
+    o readport  -> read
+    o writeport -> write
+    o cleanup   -> close
+    o configure -> config
+    o removed fparity argument from config function
+    o read method now returns data instead of data length
+    o data method removed
+    o other minor fixes
+Version 0.3 (1/14/2003):
+    o added timeouts method
+Version 0.4 (1/15/2003):
+    o Fixed VC++ build?
+Version 0.5 (4/10/2006):
+    o Added support for writing null characters (Tim Smith)
+    o Added support for reading null characters (Tim Smith)
+    o Added support for opening ports past COM9 (Tim Smith)

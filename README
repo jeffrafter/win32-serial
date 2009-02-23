@@ -1,0 +1,30 @@
+
+        Win32Serial Extension Library
+
+        Apr. 10, 2006 Travis Whitton <whitton@atlantic.net>
+
+The Win32Serial library provides an easy interface to serial ports under
+windows platforms by using the Windows API.
+
+[Files]
+win32serial/README : this file.
+win32serial/doc : documentation
+win32serial/sample : sample programs
+
+[How to install]
+1. unzip win32serial-x.x.zip
+2. ruby extconf.rb
+3. make (or nmake)
+4. make install
+
+[Copying]
+Win32Serial extension library is copyrighted free software by Travis
+Whitton <whitton@atlantic.net>.
+You can redistribute it under the terms specified in the COPYING file
+of the Ruby distribution.
+
+[WARRANTY]
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.
